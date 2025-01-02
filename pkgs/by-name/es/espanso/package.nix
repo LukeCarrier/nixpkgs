@@ -48,6 +48,9 @@ rustPlatform.buildRustPackage rec {
     };
   };
 
+  # Fuck you Apple
+  env.NIX_CFLAGS_COMPILE = lib.optionalString stdenv.hostPlatform.isDarwin "-isystem ${apple-sdk_11}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/CarbonCore.framework/Versions/Current/Headers";
+
   nativeBuildInputs = [
     extra-cmake-modules
     pkg-config
